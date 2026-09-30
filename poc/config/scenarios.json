@@ -1,0 +1,82 @@
+{
+  "defaults": {
+    "n": 3,
+    "budget_ms": 80,
+    "runs": 1,
+    "scenario": "normal"
+  },
+  "fixed_order": [
+    "fast",
+    "flaky",
+    "premium"
+  ],
+  "partners": [
+    {
+      "name": "fast",
+      "delay_ms": 5,
+      "eligible": true,
+      "items": [
+        {
+          "id": "fast-video",
+          "cpc_micros": 80000,
+          "click_ppm": 250000
+        },
+        {
+          "id": "fast-story",
+          "cpc_micros": 60000,
+          "click_ppm": 200000
+        }
+      ]
+    },
+    {
+      "name": "premium",
+      "delay_ms": 45,
+      "eligible": true,
+      "items": [
+        {
+          "id": "premium-video",
+          "cpc_micros": 400000,
+          "click_ppm": 100000
+        },
+        {
+          "id": "premium-story",
+          "cpc_micros": 350000,
+          "click_ppm": 40000
+        }
+      ]
+    },
+    {
+      "name": "flaky",
+      "delay_ms": 20,
+      "eligible": true,
+      "items": [
+        {
+          "id": "flaky-topic",
+          "cpc_micros": 200000,
+          "click_ppm": 120000
+        }
+      ]
+    }
+  ],
+  "scenarios": {
+    "normal": {},
+    "late": {
+      "premium": {
+        "delay_ms": 150
+      }
+    },
+    "failure": {
+      "flaky": {
+        "fail": true
+      }
+    },
+    "outage": {
+      "premium": {
+        "delay_ms": 150
+      },
+      "flaky": {
+        "fail": true
+      }
+    }
+  }
+}
